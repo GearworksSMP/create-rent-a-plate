@@ -28,9 +28,11 @@ public class WarpPlates implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static final Block WARP_PLATE_BLOCK = new WarpPlateBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noLootTable().strength(-1.0F, 3600000.0F));
+	@SuppressWarnings("DataFlowIssue")
 	public static final BlockEntityType<WarpPlateBlockEntity> WARP_PLATE_BLOCK_ENTITY = BlockEntityType.Builder.of(WarpPlateBlockEntity::new, WARP_PLATE_BLOCK).build(null);
 	public static final BlockItem WARP_PLATE_BLOCK_ITEM = new BlockItem(WARP_PLATE_BLOCK, new Item.Properties());
 	public static final Block RETURN_PLATE_BLOCK = new ReturnPlateBlock(Block.Properties.copy(Blocks.IRON_BLOCK));
+	@SuppressWarnings("DataFlowIssue")
 	public static final BlockEntityType<ReturnPlateBlockEntity> RETURN_PLATE_BLOCK_ENTITY = BlockEntityType.Builder.of(ReturnPlateBlockEntity::new, RETURN_PLATE_BLOCK).build(null);
 	public static final BlockItem RETURN_PLATE_BLOCK_ITEM = new BlockItem(RETURN_PLATE_BLOCK, new Item.Properties());
 	public static final MenuType<WarpPlateRentMenu> WARP_PLATE_RENT_MENU = new ExtendedScreenHandlerType<>(WarpPlateRentMenu::new);
@@ -51,7 +53,7 @@ public class WarpPlates implements ModInitializer {
 		ServerPlayNetworking.registerGlobalReceiver(RENT_SCREEN_RENT_PACKET, (server, player, handler, buf, responseSender) -> {
 			boolean alreadyRented = buf.readBoolean();
 			String title;
-			
+
 			if (alreadyRented) {
 				title = "";
 			} else {
@@ -65,14 +67,9 @@ public class WarpPlates implements ModInitializer {
 			}
 		});
 
-		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-			sender.sendPacket(CONFIG_SYNC_PACKET, WarpPlatesConfig.INSTANCE.toSyncPacket());
-		});
+		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> sender.sendPacket(CONFIG_SYNC_PACKET, WarpPlatesConfig.INSTANCE.createSyncPacket()));
+		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register((group) -> group.accept(WARP_PLATE_BLOCK_ITEM));
 
-		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register((group) -> {
-			group.accept(WARP_PLATE_BLOCK_ITEM);
-		});
-		
 		LOGGER.info("Warp Plates initialized");
 	}
 

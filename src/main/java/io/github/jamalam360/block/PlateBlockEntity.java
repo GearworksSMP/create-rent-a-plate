@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -31,9 +30,9 @@ public abstract class PlateBlockEntity extends BlockEntity {
 		super(type, pos, state);
 	}
 
-	protected boolean tryTeleport(Player player, PlateType type) {
+	protected void tryTeleport(Player player, PlateType type) {
 		if (COOLDOWNS.getOrDefault(player.getUUID(), 0L) > System.currentTimeMillis()) {
-			return false;
+			return;
 		}
 
 		if (player instanceof ServerPlayer serverPlayer && level instanceof ServerLevel serverLevel) {
@@ -52,13 +51,11 @@ public abstract class PlateBlockEntity extends BlockEntity {
 					buf.writeBlockPos(pair.returnPlate().pos());
 					buf.writeBlockPos(pair.warpPlate().pos());
 					ServerPlayNetworking.send(serverPlayer, WarpPlates.PARTICLE_PACKET, buf);
-					
-					return true;
+
 				}
 			}
 		}
 
-		return false;
 	}
 
 	@Override

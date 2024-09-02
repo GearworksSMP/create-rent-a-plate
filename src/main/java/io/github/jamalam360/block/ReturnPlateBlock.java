@@ -14,7 +14,7 @@ public class ReturnPlateBlock extends PlateBlock {
 	public PlateType getType() {
 		return PlateType.RETURN;
 	}
-	
+
 	@Override
 	public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
 		return new ReturnPlateBlockEntity(pos, state);

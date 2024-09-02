@@ -1,6 +1,5 @@
 package io.github.jamalam360.block;
 
-import io.github.jamalam360.WarpPlates;
 import io.github.jamalam360.data.WarpPlatePair;
 import io.github.jamalam360.data.WarpPlatesSavedData;
 import net.minecraft.core.BlockPos;
@@ -12,10 +11,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,8 +23,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WarpPlateBlock extends PlateBlock {
-	private static final long FIVE_DAYS = 1000L * 60L * 60L * 24L * 5L; 
-	
+	private static final long FIVE_DAYS = 1000L * 60L * 60L * 24L * 5L;
+
 	public WarpPlateBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, Direction.NORTH));
@@ -51,7 +48,7 @@ public class WarpPlateBlock extends PlateBlock {
 		if (blockEntity != null && level instanceof ServerLevel) {
 			WarpPlatesSavedData data = WarpPlatesSavedData.get((ServerLevel) level);
 			WarpPlatePair pair = data.getPair(blockEntity.getId());
-			
+
 			if (!blockEntity.isRented() || (pair != null && blockEntity.getRenter().equals(player.getUUID()) && pair.expiryTime() - System.currentTimeMillis() < FIVE_DAYS)) {
 				player.openMenu(blockEntity);
 			} else {

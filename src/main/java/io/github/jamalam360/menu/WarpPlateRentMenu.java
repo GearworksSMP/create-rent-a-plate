@@ -2,9 +2,7 @@ package io.github.jamalam360.menu;
 
 import io.github.jamalam360.WarpPlates;
 import io.github.jamalam360.WarpPlatesConfig;
-import io.github.jamalam360.block.WarpPlateBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.UUID;
 
 public class WarpPlateRentMenu extends AbstractContainerMenu {
@@ -24,7 +21,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 	private final RentCallback rentCallback;
 	private String warpTitle = "";
 	private long expiryTime = -2L;
-	private @Nullable UUID renter;
+	private final @Nullable UUID renter;
 
 	public WarpPlateRentMenu(int containerId, Container container, FriendlyByteBuf buf) {
 		this(containerId, container, ContainerLevelAccess.NULL, null, RentCallback.EMPTY);
@@ -37,7 +34,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 		this.levelAccess = levelAccess;
 		this.renter = player;
 		this.rentCallback = rentCallback;
-		this.paymentSlot = new PaymentSlot(new SimpleContainer(1), 0, 44, 51);
+		this.paymentSlot = new PaymentSlot(new SimpleContainer(1), 0, 44, 49);
 		this.addSlot(this.paymentSlot);
 
 		for (int i = 0; i < 3; i++) {
@@ -73,7 +70,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 		Item item = WarpPlatesConfig.INSTANCE.getRentItem();
 		int count = WarpPlatesConfig.INSTANCE.getRentPrice();
 		ItemStack itemStack = this.paymentSlot.getItem();
-		
+
 		if (itemStack.isEmpty()) {
 			return false;
 		} else return itemStack.is(item) && itemStack.getCount() >= count;
@@ -82,7 +79,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 	public String getWarpTitle() {
 		return this.warpTitle;
 	}
-	
+
 	public long getExpiryTime() {
 		return this.expiryTime;
 	}

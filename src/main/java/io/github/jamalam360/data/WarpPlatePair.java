@@ -24,11 +24,11 @@ public final class WarpPlatePair {
 	public long expiryTime() {
 		return expiryTime;
 	}
-	
+
 	public void setExpiryTime(long expiryTime) {
 		this.expiryTime = expiryTime;
 	}
-	
+
 	public WarpPlate warpPlate() {
 		return warpPlate;
 	}

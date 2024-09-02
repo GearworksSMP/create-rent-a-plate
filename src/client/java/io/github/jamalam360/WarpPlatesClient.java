@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 
 public class WarpPlatesClient implements ClientModInitializer {
 	@Override
@@ -18,20 +17,23 @@ public class WarpPlatesClient implements ClientModInitializer {
 
 		ClientPlayNetworking.registerGlobalReceiver(WarpPlates.PARTICLE_PACKET, (client, handler, buf, responseSender) -> {
 			BlockPos pos1 = buf.readBlockPos();
-			BlockPos pos2 = buf.readBlockPos();			
+			BlockPos pos2 = buf.readBlockPos();
 			client.execute(() -> {
+				if (client.level == null) return;
+
 				PlateBlock.spawnTeleportParticles(client.level, pos1);
 				PlateBlock.spawnTeleportParticles(client.level, pos2);
 			});
 		});
-		
+
 		ClientPlayNetworking.registerGlobalReceiver(WarpPlates.CONFIG_SYNC_PACKET, (client, handler, buf, responseSender) -> {
 			int size = buf.readInt();
-			
+
 			for (int i = 0; i < size; i++) {
 				String key = buf.readUtf();
 				String value = buf.readUtf();
-				WarpPlatesConfig.INSTANCE.set(key, value);
+
+				client.execute(() -> WarpPlatesConfig.INSTANCE.set(key, value));
 			}
 		});
 	}

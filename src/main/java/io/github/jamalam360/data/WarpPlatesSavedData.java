@@ -1,6 +1,5 @@
 package io.github.jamalam360.data;
 
-import io.github.jamalam360.block.WarpPlateBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -11,12 +10,10 @@ import net.minecraft.world.level.saveddata.SavedData;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class WarpPlatesSavedData extends SavedData {
 	private final List<WarpPlatePair> pairs;
-	private final List<WarpPlatePair> toRemove = new ArrayList<>();
 	private int nextId;
 
 	private WarpPlatesSavedData(List<WarpPlatePair> pairs, int nextId) {
@@ -61,7 +58,7 @@ public class WarpPlatesSavedData extends SavedData {
 		this.pairs.removeIf(pair -> pair.id() == id);
 		this.setDirty();
 	}
-	
+
 	private static WarpPlatesSavedData createFromTag(CompoundTag tag) {
 		List<WarpPlatePair> pairs = new ArrayList<>();
 
@@ -79,7 +76,7 @@ public class WarpPlatesSavedData extends SavedData {
 			} else {
 				returnPlate = null;
 			}
-			
+
 			pairs.add(new WarpPlatePair(id, expiryTime, warpPlate, returnPlate));
 		}
 

@@ -5,7 +5,6 @@ import io.github.jamalam360.data.WarpPlatePair;
 import io.github.jamalam360.data.WarpPlatesSavedData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -13,13 +12,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -27,7 +23,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class PlateBlock extends Block implements EntityBlock {
 	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -85,13 +80,18 @@ public abstract class PlateBlock extends Block implements EntityBlock {
 			level.scheduleTick(pos, this, 20);
 		}
 	}
-	
+
 	@Override
 	public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
 		super.playerWillDestroy(level, pos, state, player);
 
 		if (level instanceof ServerLevel serverLevel) {
 			PlateBlockEntity blockEntity = (PlateBlockEntity) level.getBlockEntity(pos);
+			
+			if (blockEntity == null) {
+				return;
+			}
+			
 			WarpPlatesSavedData data = WarpPlatesSavedData.get(serverLevel);
 			WarpPlatePair pair = data.getPair(blockEntity.getId());
 
