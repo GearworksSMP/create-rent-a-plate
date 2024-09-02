@@ -108,7 +108,7 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 			this.rentButton.active = this.menu.hasValidPayment() && !this.warpTitle.getValue().trim().isEmpty();
 			this.warpTitle.tick();
 		} else {
-			this.rentButton.active = this.menu.hasValidPayment() && this.menu.getExpiryTime() - System.currentTimeMillis() < (1000L * 5 * 24 * 60 * 60);
+			this.rentButton.active = this.menu.hasValidPayment() && this.menu.getExpiryTime() - System.currentTimeMillis() < WarpPlatesConfig.INSTANCE.getRentRenewalTime();
 		}
 	}
 

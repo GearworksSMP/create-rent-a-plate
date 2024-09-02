@@ -15,8 +15,12 @@ import java.util.Properties;
 
 public class WarpPlatesConfig {
 	public static final WarpPlatesConfig INSTANCE = new WarpPlatesConfig(FabricLoader.getInstance().getConfigDir().resolve("warp_plates.properties").toFile());
-	public static final String RENT_ITEM = "rent_item";
-	public static final String RENT_PRICE = "rent_price";
+	private static final String RENT_ITEM = "rent_item";
+	private static final String RENT_PRICE = "rent_price";
+	private static final String RENT_DURATION = "rent_duration";
+	private static final String RENT_RENEWAL_TIME = "rent_renewal_time";
+	private static final long DEFAULT_RENT_DURATION = 1000 * 60 * 60 * 24 * 30L;
+	private static final long DEFAULT_RENT_RENEWAL_TIME = 1000 * 60 * 60 * 25 * 5L;
 	private final Properties properties;
 
 	public WarpPlatesConfig(File file) {
@@ -30,7 +34,7 @@ public class WarpPlatesConfig {
 				this.properties.load(new FileReader(file));
 			} else {
 				file.createNewFile();
-				this.properties.store(new FileWriter(file), "Warp Plates Config");
+				this.properties.store(new FileWriter(file), "Warp Plates Config. Durations are in seconds.");
 			}
 		} catch (IOException e) {
 			WarpPlates.LOGGER.error("Failed to create config file", e);
@@ -51,6 +55,14 @@ public class WarpPlatesConfig {
 
 	public int getRentPrice() {
 		return Integer.parseInt(this.properties.getProperty(RENT_PRICE, "1"));
+	}
+	
+	public long getRentDuration() {
+		return Long.parseLong(this.properties.getProperty(RENT_DURATION, DEFAULT_RENT_DURATION + "")) * 1000L;
+	}
+	
+	public long getRentRenewalTime() {
+		return Long.parseLong(this.properties.getProperty(RENT_RENEWAL_TIME, DEFAULT_RENT_RENEWAL_TIME + "")) * 1000L;
 	}
 
 	public FriendlyByteBuf createSyncPacket() {

@@ -1,6 +1,7 @@
 package io.github.jamalam360.block;
 
 import io.github.jamalam360.WarpPlates;
+import io.github.jamalam360.WarpPlatesConfig;
 import io.github.jamalam360.data.WarpPlate;
 import io.github.jamalam360.data.WarpPlatePair;
 import io.github.jamalam360.data.WarpPlatesSavedData;
@@ -29,7 +30,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedScreenHandlerFactory {
-	private static final long RENT_DURATION = 1000 * 60 * 60 * 24 * 30L;
 	private String warpTitle = "";
 	@Nullable
 	private UUID renter;
@@ -77,14 +77,13 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 			WarpPlatePair pair = data.getPair(this.getId());
 
 			if (pair == null) {
-				long thisTime = System.currentTimeMillis();
-				long expiryTime = thisTime + RENT_DURATION;
+				long expiryTime = System.currentTimeMillis() + WarpPlatesConfig.INSTANCE.getRentDuration();
 				pair = new WarpPlatePair(data.getNextId(), expiryTime, new WarpPlate(serverLevel.dimensionTypeId().location(), this.getBlockPos()), null);
 				WarpPlates.LOGGER.info("Warp Plate at {} rented with ID {}", this.getBlockPos(), pair.id());
 				data.addPair(pair);
 				this.setId(pair.id());
 			} else {
-				pair.setExpiryTime(pair.expiryTime() + RENT_DURATION);
+				pair.setExpiryTime(pair.expiryTime() + WarpPlatesConfig.INSTANCE.getRentDuration());
 				WarpPlates.LOGGER.info("Warp Plate at {} rent extended", this.getBlockPos());
 			}
 
