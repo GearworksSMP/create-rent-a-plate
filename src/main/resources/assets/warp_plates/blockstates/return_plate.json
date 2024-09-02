@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=true": {
+      "model": "warp_plates:block/warp_plate_active"
+    },
+    "active=false": {
+      "model": "warp_plates:block/warp_plate"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "active=true,facing=north": {
+      "model": "warp_plates:block/warp_plate_active"
+    },
+    "active=true,facing=east": {
+      "model": "warp_plates:block/warp_plate_active",
+      "y": 90,
+      "uvlock": true
+    },
+    "active=true,facing=south": {
+      "model": "warp_plates:block/warp_plate_active",
+      "y": 180,
+      "uvlock": true
+    },
+    "active=true,facing=west": {
+      "model": "warp_plates:block/warp_plate_active",
+      "y": 270,
+      "uvlock": true
+    },
+    "active=false,facing=north": {
+      "model": "warp_plates:block/warp_plate"
+    },
+    "active=false,facing=east": {
+      "model": "warp_plates:block/warp_plate",
+      "y": 90
+    },
+    "active=false,facing=south": {
+      "model": "warp_plates:block/warp_plate",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "warp_plates:block/warp_plate",
+      "y": 270
+    }
+  }
+}
