@@ -23,8 +23,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WarpPlateBlock extends PlateBlock {
-	private static final long FIVE_DAYS = 1000L * 60L * 60L * 24L * 5L;
-
 	public WarpPlateBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, Direction.NORTH));
@@ -49,7 +47,7 @@ public class WarpPlateBlock extends PlateBlock {
 			WarpPlatesSavedData data = WarpPlatesSavedData.get((ServerLevel) level);
 			WarpPlatePair pair = data.getPair(blockEntity.getId());
 
-			if (!blockEntity.isRented() || (pair != null && blockEntity.getRenter().equals(player.getUUID()) && pair.expiryTime() - System.currentTimeMillis() < FIVE_DAYS)) {
+			if (!blockEntity.isRented() || (pair != null && blockEntity.getRenter().equals(player.getUUID()))) {
 				player.openMenu(blockEntity);
 			} else {
 				player.displayClientMessage(Component.translatable("text.warp_plates.already_rented"), true);

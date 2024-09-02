@@ -1,5 +1,6 @@
 package io.github.jamalam360.data;
 
+import io.github.jamalam360.WarpPlates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -79,6 +80,8 @@ public class WarpPlatesSavedData extends SavedData {
 
 			pairs.add(new WarpPlatePair(id, expiryTime, warpPlate, returnPlate));
 		}
+		
+		WarpPlates.LOGGER.info("Loaded {} warp plates", pairs.size());
 
 		return new WarpPlatesSavedData(pairs, tag.getInt("nextId"));
 	}
@@ -90,6 +93,7 @@ public class WarpPlatesSavedData extends SavedData {
 		for (WarpPlatePair pair : this.pairs) {
 			CompoundTag pairTag = new CompoundTag();
 			pairTag.putInt("id", pair.id());
+			pairTag.putLong("expiryTime", pair.expiryTime());
 			pairTag.put("warpPlate", saveWarpPlate(new CompoundTag(), pair.warpPlate()));
 
 			if (pair.returnPlate() != null) {
@@ -101,6 +105,8 @@ public class WarpPlatesSavedData extends SavedData {
 
 		tag.put("pairs", pairs);
 		tag.putInt("nextId", this.nextId);
+
+		WarpPlates.LOGGER.info("Saved warp plates data");
 
 		return tag;
 	}

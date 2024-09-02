@@ -7,5 +7,6 @@
   "text.warp_plates.screen.rent": "Rent",
   "text.warp_plates.screen.renew": "Renew",
   "text.warp_plates.already_rented": "This warp plate is already rented.",
-  "text.warp_plates.rent_expired": "Your warp '%s' has expired."
+  "text.warp_plates.rent_expired": "Your warp '%s' has expired.",
+  "text.warp_plates.admin_required": "You must hold at least permission level 2 to place a warp plate."
 }

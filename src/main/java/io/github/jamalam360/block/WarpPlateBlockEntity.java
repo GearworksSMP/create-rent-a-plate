@@ -29,8 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedScreenHandlerFactory {
-	//	private static final long RENT_DURATION = 1000L * 60L * 60L * 24L * 30L;
-	private static final long RENT_DURATION = 1000L * 75L;
+	private static final long RENT_DURATION = 1000 * 60 * 60 * 24 * 30L;
 	private String warpTitle = "";
 	@Nullable
 	private UUID renter;
@@ -43,8 +42,9 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 		if (blockEntity.isRented() && blockEntity.level instanceof ServerLevel serverLevel) {
 			WarpPlatesSavedData data = WarpPlatesSavedData.get(serverLevel);
 			WarpPlatePair pair = data.getPair(blockEntity.getId());
-
+			
 			if (pair != null && pair.expiryTime() < System.currentTimeMillis()) {
+				WarpPlates.LOGGER.info("Warp Plate at {} expired", pos);
 				if (blockEntity.renter != null && level.getPlayerByUUID(blockEntity.renter) instanceof ServerPlayer player) {
 					player.displayClientMessage(Component.translatable("text.warp_plates.rent_expired", blockEntity.warpTitle), true);
 				}
