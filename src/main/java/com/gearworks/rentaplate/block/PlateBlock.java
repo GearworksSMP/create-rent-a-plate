@@ -1,8 +1,8 @@
-package io.github.jamalam360.block;
+package com.gearworks.rentaplate.block;
 
-import io.github.jamalam360.data.WarpPlate;
-import io.github.jamalam360.data.WarpPlatePair;
-import io.github.jamalam360.data.WarpPlatesSavedData;
+import com.gearworks.rentaplate.data.WarpPlate;
+import com.gearworks.rentaplate.data.WarpPlatePair;
+import com.gearworks.rentaplate.data.WarpPlatesSavedData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;

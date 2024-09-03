@@ -1,8 +1,10 @@
-package io.github.jamalam360;
+package com.gearworks.rentaplate;
 
-import io.github.jamalam360.block.PlateBlock;
-import io.github.jamalam360.block.WarpPlateBlockEntityRenderer;
-import io.github.jamalam360.screen.WarpPlateRentScreen;
+import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.WarpPlatesConfig;
+import com.gearworks.rentaplate.block.PlateBlock;
+import com.gearworks.rentaplate.block.WarpPlateBlockEntityRenderer;
+import com.gearworks.rentaplate.screen.WarpPlateRentScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.screens.MenuScreens;

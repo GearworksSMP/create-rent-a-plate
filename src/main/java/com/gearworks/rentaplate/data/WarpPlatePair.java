@@ -1,4 +1,4 @@
-package io.github.jamalam360.data;
+package com.gearworks.rentaplate.data;
 
 import org.jetbrains.annotations.Nullable;
 

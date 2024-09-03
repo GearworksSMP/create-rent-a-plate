@@ -1,8 +1,8 @@
-package io.github.jamalam360.screen;
+package com.gearworks.rentaplate.screen;
 
-import io.github.jamalam360.WarpPlates;
-import io.github.jamalam360.WarpPlatesConfig;
-import io.github.jamalam360.menu.WarpPlateRentMenu;
+import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.WarpPlatesConfig;
+import com.gearworks.rentaplate.menu.WarpPlateRentMenu;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.Minecraft;

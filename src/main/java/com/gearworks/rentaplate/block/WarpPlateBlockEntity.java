@@ -1,11 +1,11 @@
-package io.github.jamalam360.block;
+package com.gearworks.rentaplate.block;
 
-import io.github.jamalam360.WarpPlates;
-import io.github.jamalam360.WarpPlatesConfig;
-import io.github.jamalam360.data.WarpPlate;
-import io.github.jamalam360.data.WarpPlatePair;
-import io.github.jamalam360.data.WarpPlatesSavedData;
-import io.github.jamalam360.menu.WarpPlateRentMenu;
+import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.WarpPlatesConfig;
+import com.gearworks.rentaplate.data.WarpPlate;
+import com.gearworks.rentaplate.data.WarpPlatePair;
+import com.gearworks.rentaplate.data.WarpPlatesSavedData;
+import com.gearworks.rentaplate.menu.WarpPlateRentMenu;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

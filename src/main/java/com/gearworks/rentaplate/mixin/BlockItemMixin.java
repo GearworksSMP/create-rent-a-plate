@@ -1,13 +1,9 @@
-package io.github.jamalam360.mixin;
+package com.gearworks.rentaplate.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import io.github.jamalam360.WarpPlates;
+import com.gearworks.rentaplate.WarpPlates;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,4 +1,4 @@
-package io.github.jamalam360;
+package com.gearworks.rentaplate;
 
 import io.netty.buffer.Unpooled;
 import net.fabricmc.loader.api.FabricLoader;

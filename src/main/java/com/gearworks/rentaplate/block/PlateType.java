@@ -1,4 +1,4 @@
-package io.github.jamalam360.block;
+package com.gearworks.rentaplate.block;
 
 public enum PlateType {
 	SOURCE,

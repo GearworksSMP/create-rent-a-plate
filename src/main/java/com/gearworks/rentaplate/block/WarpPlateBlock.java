@@ -1,7 +1,7 @@
-package io.github.jamalam360.block;
+package com.gearworks.rentaplate.block;
 
-import io.github.jamalam360.data.WarpPlatePair;
-import io.github.jamalam360.data.WarpPlatesSavedData;
+import com.gearworks.rentaplate.data.WarpPlatePair;
+import com.gearworks.rentaplate.data.WarpPlatesSavedData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

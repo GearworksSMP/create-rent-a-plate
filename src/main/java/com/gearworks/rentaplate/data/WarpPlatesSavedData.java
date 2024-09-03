@@ -1,6 +1,6 @@
-package io.github.jamalam360.data;
+package com.gearworks.rentaplate.data;
 
-import io.github.jamalam360.WarpPlates;
+import com.gearworks.rentaplate.WarpPlates;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;

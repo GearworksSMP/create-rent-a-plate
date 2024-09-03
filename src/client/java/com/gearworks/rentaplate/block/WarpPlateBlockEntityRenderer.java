@@ -1,7 +1,8 @@
-package io.github.jamalam360.block;
+package com.gearworks.rentaplate.block;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.gearworks.rentaplate.block.WarpPlateBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;

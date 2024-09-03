@@ -1,4 +1,4 @@
-package io.github.jamalam360.data;
+package com.gearworks.rentaplate.data;
 
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.minecraft.core.BlockPos;

@@ -1,10 +1,10 @@
-package io.github.jamalam360;
+package com.gearworks.rentaplate;
 
-import io.github.jamalam360.block.ReturnPlateBlock;
-import io.github.jamalam360.block.ReturnPlateBlockEntity;
-import io.github.jamalam360.block.WarpPlateBlock;
-import io.github.jamalam360.block.WarpPlateBlockEntity;
-import io.github.jamalam360.menu.WarpPlateRentMenu;
+import com.gearworks.rentaplate.block.ReturnPlateBlock;
+import com.gearworks.rentaplate.block.ReturnPlateBlockEntity;
+import com.gearworks.rentaplate.block.WarpPlateBlock;
+import com.gearworks.rentaplate.block.WarpPlateBlockEntity;
+import com.gearworks.rentaplate.menu.WarpPlateRentMenu;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;

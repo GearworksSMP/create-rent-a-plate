@@ -1,7 +1,7 @@
-package io.github.jamalam360.menu;
+package com.gearworks.rentaplate.menu;
 
-import io.github.jamalam360.WarpPlates;
-import io.github.jamalam360.WarpPlatesConfig;
+import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.WarpPlatesConfig;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
