@@ -28,6 +28,8 @@ public class WarpPlatesConfig {
 
 		this.properties.setProperty(RENT_ITEM, "minecraft:emerald");
 		this.properties.setProperty(RENT_PRICE, "1");
+		this.properties.setProperty(RENT_DURATION, DEFAULT_RENT_DURATION + "");
+		this.properties.setProperty(RENT_RENEWAL_TIME, DEFAULT_RENT_RENEWAL_TIME + "");
 
 		try {
 			if (file.exists()) {

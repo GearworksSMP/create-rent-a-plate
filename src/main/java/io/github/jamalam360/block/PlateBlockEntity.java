@@ -51,7 +51,6 @@ public abstract class PlateBlockEntity extends BlockEntity {
 					buf.writeBlockPos(pair.returnPlate().pos());
 					buf.writeBlockPos(pair.warpPlate().pos());
 					ServerPlayNetworking.send(serverPlayer, WarpPlates.PARTICLE_PACKET, buf);
-
 				}
 			}
 		}
