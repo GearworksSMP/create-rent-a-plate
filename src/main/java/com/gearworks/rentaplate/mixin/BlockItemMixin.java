@@ -24,7 +24,7 @@ public abstract class BlockItemMixin {
 	private void warp_plates$onlyAllowAdmins(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir) {
 		if (this.getBlock() == RentAPlate.WARP_PLATE_BLOCK && context.getPlayer() != null && !context.getPlayer().hasPermissions(2)) {
 			if (!context.getLevel().isClientSide()) {
-				context.getPlayer().sendSystemMessage(Component.translatable("text.warp_plates.admin_required"));
+				context.getPlayer().sendSystemMessage(Component.translatable("text.rentaplate.admin_required"));
 			}
 			
 			cir.setReturnValue(InteractionResult.FAIL);

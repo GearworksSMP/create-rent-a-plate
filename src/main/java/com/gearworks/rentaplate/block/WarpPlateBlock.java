@@ -50,7 +50,7 @@ public class WarpPlateBlock extends PlateBlock {
 			if (!blockEntity.isRented() || (pair != null && blockEntity.getRenter().equals(player.getUUID()))) {
 				player.openMenu(blockEntity);
 			} else {
-				player.displayClientMessage(Component.translatable("text.warp_plates.already_rented"), true);
+				player.displayClientMessage(Component.translatable("text.rentaplate.already_rented"), true);
 			}
 		}
 

@@ -46,7 +46,7 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 			if (pair != null && pair.expiryTime() < System.currentTimeMillis()) {
 				RentAPlate.LOGGER.info("Warp Plate at {} expired", pos);
 				if (blockEntity.renter != null && level.getPlayerByUUID(blockEntity.renter) instanceof ServerPlayer player) {
-					player.displayClientMessage(Component.translatable("text.warp_plates.rent_expired", blockEntity.warpTitle), true);
+					player.displayClientMessage(Component.translatable("text.rentaplate.rent_expired", blockEntity.warpTitle), true);
 				}
 
 				data.removePair(blockEntity.getId());

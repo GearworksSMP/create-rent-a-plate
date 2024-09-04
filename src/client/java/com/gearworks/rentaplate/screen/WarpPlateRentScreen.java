@@ -42,7 +42,7 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 	private EditBox warpTitle;
 
 	public WarpPlateRentScreen(WarpPlateRentMenu menu, Inventory playerInventory, Component ignoredTitle) {
-		super(menu, playerInventory, Component.translatable("text.warp_plates.screen.title"));
+		super(menu, playerInventory, Component.translatable("text.rentaplate.screen.title"));
 	}
 
 	@Override
@@ -53,18 +53,18 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 		int j = (this.height - this.imageHeight) / 2;
 
 		if (this.menu.getExpiryTime() == -1L) {
-			this.warpTitle = new EditBox(this.font, i + ROW_ONE_X_OFFSET, j + EDIT_BOX_Y_OFFSET, EDIT_BOX_WIDTH, EDIT_BOX_HEIGHT, Component.translatable("text.warp_plates.screen.edit_box"));
+			this.warpTitle = new EditBox(this.font, i + ROW_ONE_X_OFFSET, j + EDIT_BOX_Y_OFFSET, EDIT_BOX_WIDTH, EDIT_BOX_HEIGHT, Component.translatable("text.rentaplate.screen.edit_box"));
 			this.warpTitle.setCanLoseFocus(false);
 			this.warpTitle.setTextColor(-1);
 			this.warpTitle.setBordered(false);
 			this.warpTitle.setMaxLength(50);
 			this.warpTitle.setValue(this.menu.getWarpTitle());
-			this.warpTitle.setHint(Component.translatable("text.warp_plates.screen.edit_box"));
+			this.warpTitle.setHint(Component.translatable("text.rentaplate.screen.edit_box"));
 			this.addRenderableWidget(this.warpTitle);
 			this.setInitialFocus(this.warpTitle);
 		}
 
-		this.rentButton = this.addRenderableWidget(Button.builder(this.menu.getExpiryTime() == -1L ? Component.translatable("text.warp_plates.screen.rent") : Component.translatable("text.warp_plates.screen.renew"), (button) -> {
+		this.rentButton = this.addRenderableWidget(Button.builder(this.menu.getExpiryTime() == -1L ? Component.translatable("text.rentaplate.screen.rent") : Component.translatable("text.rentaplate.screen.renew"), (button) -> {
 			FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
 			if (this.warpTitle != null) {
 				buf.writeBoolean(false);
@@ -86,7 +86,7 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 		}
 
 		String dur = DurationFormatUtils.formatDuration(time, "d'd' H'h' m'm' s's'");
-		return Component.translatable("text.warp_plates.screen.expiry_time", dur);
+		return Component.translatable("text.rentaplate.screen.expiry_time", dur);
 	}
 
 
