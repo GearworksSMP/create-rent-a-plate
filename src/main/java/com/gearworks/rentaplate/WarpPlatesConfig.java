@@ -39,7 +39,7 @@ public class WarpPlatesConfig {
 				this.properties.store(new FileWriter(file), "Warp Plates Config. Durations are in seconds.");
 			}
 		} catch (IOException e) {
-			WarpPlates.LOGGER.error("Failed to create config file", e);
+			RentAPlate.LOGGER.error("Failed to create config file", e);
 		}
 
 		if (this.getRentPrice() > this.getRentItem().getMaxStackSize()) {

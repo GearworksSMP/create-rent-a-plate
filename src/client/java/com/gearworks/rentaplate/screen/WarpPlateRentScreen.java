@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.screen;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import com.gearworks.rentaplate.WarpPlatesConfig;
 import com.gearworks.rentaplate.menu.WarpPlateRentMenu;
 import io.netty.buffer.Unpooled;
@@ -21,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("DataFlowIssue")
 public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMenu> {
-	private static final ResourceLocation SCREEN_LOCATION = WarpPlates.id("textures/gui/container/rent_screen.png");
+	private static final ResourceLocation SCREEN_LOCATION = RentAPlate.id("textures/gui/container/rent_screen.png");
 	private static final ItemStack RENT_ITEM = new ItemStack(WarpPlatesConfig.INSTANCE.getRentItem(), WarpPlatesConfig.INSTANCE.getRentPrice());
 	private static final int ROW_ONE_X_OFFSET = 11;
 	private static final int EDIT_BOX_Y_OFFSET = 24;
@@ -73,7 +73,7 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 				buf.writeBoolean(true);
 			}
 
-			ClientPlayNetworking.send(WarpPlates.RENT_SCREEN_RENT_PACKET, buf);
+			ClientPlayNetworking.send(RentAPlate.RENT_SCREEN_RENT_PACKET, buf);
 			this.minecraft.player.closeContainer();
 		}).pos(i + BUTTON_X_OFFSET, j + BUTTON_Y_OFFSET).size(BUTTON_WIDTH, BUTTON_HEIGHT).build());
 	}

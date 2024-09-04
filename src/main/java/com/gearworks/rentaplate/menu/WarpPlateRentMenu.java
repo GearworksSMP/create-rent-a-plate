@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.menu;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import com.gearworks.rentaplate.WarpPlatesConfig;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -30,7 +30,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 	}
 
 	public WarpPlateRentMenu(int containerId, Container container, ContainerLevelAccess levelAccess, @Nullable UUID player, RentCallback rentCallback) {
-		super(WarpPlates.WARP_PLATE_RENT_MENU, containerId);
+		super(RentAPlate.WARP_PLATE_RENT_MENU, containerId);
 		this.levelAccess = levelAccess;
 		this.renter = player;
 		this.rentCallback = rentCallback;
@@ -63,7 +63,7 @@ public class WarpPlateRentMenu extends AbstractContainerMenu {
 
 	@Override
 	public boolean stillValid(Player player) {
-		return stillValid(this.levelAccess, player, WarpPlates.WARP_PLATE_BLOCK) && (this.renter == null || this.renter.equals(player.getUUID()));
+		return stillValid(this.levelAccess, player, RentAPlate.WARP_PLATE_BLOCK) && (this.renter == null || this.renter.equals(player.getUUID()));
 	}
 
 	public boolean hasValidPayment() {

@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.mixin;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
@@ -22,7 +22,7 @@ public abstract class BlockItemMixin {
 			cancellable = true
 	)
 	private void warp_plates$onlyAllowAdmins(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir) {
-		if (this.getBlock() == WarpPlates.WARP_PLATE_BLOCK && context.getPlayer() != null && !context.getPlayer().hasPermissions(2)) {
+		if (this.getBlock() == RentAPlate.WARP_PLATE_BLOCK && context.getPlayer() != null && !context.getPlayer().hasPermissions(2)) {
 			if (!context.getLevel().isClientSide()) {
 				context.getPlayer().sendSystemMessage(Component.translatable("text.warp_plates.admin_required"));
 			}

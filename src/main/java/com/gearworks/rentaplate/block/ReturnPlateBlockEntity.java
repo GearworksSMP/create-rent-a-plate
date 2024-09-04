@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.block;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import com.gearworks.rentaplate.data.WarpPlate;
 import com.gearworks.rentaplate.data.WarpPlatePair;
 import com.gearworks.rentaplate.data.WarpPlatesSavedData;
@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class ReturnPlateBlockEntity extends PlateBlockEntity {
 	public ReturnPlateBlockEntity(BlockPos pos, BlockState state) {
-		super(WarpPlates.RETURN_PLATE_BLOCK_ENTITY, pos, state);
+		super(RentAPlate.RETURN_PLATE_BLOCK_ENTITY, pos, state);
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class ReturnPlateBlockEntity extends PlateBlockEntity {
 		WarpPlatePair pair = data.getPair(this.getId());
 
 		if (pair == null) {
-			WarpPlates.LOGGER.warn("Return plate at {} ({}) has an incorrect ID", this.getBlockPos(), this.getId());
+			RentAPlate.LOGGER.warn("Return plate at {} ({}) has an incorrect ID", this.getBlockPos(), this.getId());
 			return;
 		}
 

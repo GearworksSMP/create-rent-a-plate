@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.block;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import com.gearworks.rentaplate.data.WarpPlate;
 import com.gearworks.rentaplate.data.WarpPlatePair;
 import com.gearworks.rentaplate.data.WarpPlatesSavedData;
@@ -50,7 +50,7 @@ public abstract class PlateBlockEntity extends BlockEntity {
 					FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
 					buf.writeBlockPos(pair.returnPlate().pos());
 					buf.writeBlockPos(pair.warpPlate().pos());
-					ServerPlayNetworking.send(serverPlayer, WarpPlates.PARTICLE_PACKET, buf);
+					ServerPlayNetworking.send(serverPlayer, RentAPlate.PARTICLE_PACKET, buf);
 				}
 			}
 		}

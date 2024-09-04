@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "warp_plates:return_plate",
+          "name": "rentaplate:return_plate",
           "functions": [
             {
               "function": "minecraft:copy_nbt",

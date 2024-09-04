@@ -1,7 +1,5 @@
 package com.gearworks.rentaplate;
 
-import com.gearworks.rentaplate.WarpPlates;
-import com.gearworks.rentaplate.WarpPlatesConfig;
 import com.gearworks.rentaplate.block.PlateBlock;
 import com.gearworks.rentaplate.block.WarpPlateBlockEntityRenderer;
 import com.gearworks.rentaplate.screen.WarpPlateRentScreen;
@@ -11,13 +9,13 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.BlockPos;
 
-public class WarpPlatesClient implements ClientModInitializer {
+public class RentAPlateClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		MenuScreens.register(WarpPlates.WARP_PLATE_RENT_MENU, WarpPlateRentScreen::new);
-		BlockEntityRenderers.register(WarpPlates.WARP_PLATE_BLOCK_ENTITY, WarpPlateBlockEntityRenderer::new);
+		MenuScreens.register(RentAPlate.WARP_PLATE_RENT_MENU, WarpPlateRentScreen::new);
+		BlockEntityRenderers.register(RentAPlate.WARP_PLATE_BLOCK_ENTITY, WarpPlateBlockEntityRenderer::new);
 
-		ClientPlayNetworking.registerGlobalReceiver(WarpPlates.PARTICLE_PACKET, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(RentAPlate.PARTICLE_PACKET, (client, handler, buf, responseSender) -> {
 			BlockPos pos1 = buf.readBlockPos();
 			BlockPos pos2 = buf.readBlockPos();
 			client.execute(() -> {
@@ -28,7 +26,7 @@ public class WarpPlatesClient implements ClientModInitializer {
 			});
 		});
 
-		ClientPlayNetworking.registerGlobalReceiver(WarpPlates.CONFIG_SYNC_PACKET, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(RentAPlate.CONFIG_SYNC_PACKET, (client, handler, buf, responseSender) -> {
 			int size = buf.readInt();
 
 			for (int i = 0; i < size; i++) {

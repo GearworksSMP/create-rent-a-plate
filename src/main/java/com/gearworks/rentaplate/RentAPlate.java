@@ -23,8 +23,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WarpPlates implements ModInitializer {
-	public static final String MOD_ID = "warp_plates";
+public class RentAPlate implements ModInitializer {
+	public static final String MOD_ID = "rentaplate";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	public static final Block WARP_PLATE_BLOCK = new WarpPlateBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noLootTable().strength(-1.0F, 3600000.0F));
@@ -70,7 +70,7 @@ public class WarpPlates implements ModInitializer {
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> sender.sendPacket(CONFIG_SYNC_PACKET, WarpPlatesConfig.INSTANCE.createSyncPacket()));
 		ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register((group) -> group.accept(WARP_PLATE_BLOCK_ITEM));
 
-		LOGGER.info("Warp Plates initialized");
+		LOGGER.info("Create: Rent-A-Plate initialized");
 	}
 
 	public static ResourceLocation id(String path) {

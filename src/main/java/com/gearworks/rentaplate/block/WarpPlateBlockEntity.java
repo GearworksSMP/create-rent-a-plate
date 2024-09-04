@@ -1,6 +1,6 @@
 package com.gearworks.rentaplate.block;
 
-import com.gearworks.rentaplate.WarpPlates;
+import com.gearworks.rentaplate.RentAPlate;
 import com.gearworks.rentaplate.WarpPlatesConfig;
 import com.gearworks.rentaplate.data.WarpPlate;
 import com.gearworks.rentaplate.data.WarpPlatePair;
@@ -35,7 +35,7 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 	private UUID renter;
 
 	public WarpPlateBlockEntity(BlockPos pos, BlockState state) {
-		super(WarpPlates.WARP_PLATE_BLOCK_ENTITY, pos, state);
+		super(RentAPlate.WARP_PLATE_BLOCK_ENTITY, pos, state);
 	}
 
 	public static void tick(Level level, BlockPos pos, BlockState state, WarpPlateBlockEntity blockEntity) {
@@ -44,7 +44,7 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 			WarpPlatePair pair = data.getPair(blockEntity.getId());
 			
 			if (pair != null && pair.expiryTime() < System.currentTimeMillis()) {
-				WarpPlates.LOGGER.info("Warp Plate at {} expired", pos);
+				RentAPlate.LOGGER.info("Warp Plate at {} expired", pos);
 				if (blockEntity.renter != null && level.getPlayerByUUID(blockEntity.renter) instanceof ServerPlayer player) {
 					player.displayClientMessage(Component.translatable("text.warp_plates.rent_expired", blockEntity.warpTitle), true);
 				}
@@ -55,7 +55,7 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 				if (returnPlate != null) {
 					BlockPos returnPos = returnPlate.pos();
 
-					if (serverLevel.getBlockState(returnPos).getBlock() == WarpPlates.RETURN_PLATE_BLOCK) {
+					if (serverLevel.getBlockState(returnPos).getBlock() == RentAPlate.RETURN_PLATE_BLOCK) {
 						serverLevel.removeBlock(returnPos, false);
 					}
 				}
@@ -79,12 +79,12 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 			if (pair == null) {
 				long expiryTime = System.currentTimeMillis() + WarpPlatesConfig.INSTANCE.getRentDuration();
 				pair = new WarpPlatePair(data.getNextId(), expiryTime, new WarpPlate(serverLevel.dimensionTypeId().location(), this.getBlockPos()), null);
-				WarpPlates.LOGGER.info("Warp Plate at {} rented with ID {}", this.getBlockPos(), pair.id());
+				RentAPlate.LOGGER.info("Warp Plate at {} rented with ID {}", this.getBlockPos(), pair.id());
 				data.addPair(pair);
 				this.setId(pair.id());
 			} else {
 				pair.setExpiryTime(pair.expiryTime() + WarpPlatesConfig.INSTANCE.getRentDuration());
-				WarpPlates.LOGGER.info("Warp Plate at {} rent extended", this.getBlockPos());
+				RentAPlate.LOGGER.info("Warp Plate at {} rent extended", this.getBlockPos());
 			}
 
 			data.setDirty();
@@ -157,15 +157,15 @@ public class WarpPlateBlockEntity extends PlateBlockEntity implements ExtendedSc
 			WarpPlatePair pair = WarpPlatesSavedData.get((ServerLevel) this.level).getPair(id);
 			
 			if (pair == null) {
-				WarpPlates.LOGGER.error("Warp Plate at {} rented but pair not found", this.getBlockPos());
+				RentAPlate.LOGGER.error("Warp Plate at {} rented but pair not found", this.getBlockPos());
 				return;
 			}
 
 			if (pair.returnPlate() == null) {
-				ItemStack returnPlate = WarpPlates.RETURN_PLATE_BLOCK_ITEM.getDefaultInstance();
+				ItemStack returnPlate = RentAPlate.RETURN_PLATE_BLOCK_ITEM.getDefaultInstance();
 				CompoundTag tag = new CompoundTag();
 				tag.putInt("PlateId", id);
-				BlockItem.setBlockEntityData(returnPlate, WarpPlates.RETURN_PLATE_BLOCK_ENTITY, tag);
+				BlockItem.setBlockEntityData(returnPlate, RentAPlate.RETURN_PLATE_BLOCK_ENTITY, tag);
 				returnPlate.setHoverName(returnPlate.getDisplayName().copy().append(Component.literal(" - " + this.warpTitle)));
 				player.getInventory().add(returnPlate);
 			}
