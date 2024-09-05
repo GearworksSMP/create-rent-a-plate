@@ -3,7 +3,7 @@
   "block.rentaplate.return_plate": "Return Plate",
   "text.rentaplate.screen.title": "Rent Warp Plate",
   "text.rentaplate.screen.edit_box": "Enter warp title...",
-  "text.rentaplate.screen.expiry_time": "This warp expires in %s. You can renew it five days before it expires.",
+  "text.rentaplate.screen.expiry_time": "This warp expires in %s. You can renew it %s days before it expires.",
   "text.rentaplate.screen.rent": "Rent",
   "text.rentaplate.screen.renew": "Renew",
   "text.rentaplate.already_rented": "This warp plate is already rented.",

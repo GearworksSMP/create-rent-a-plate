@@ -14,13 +14,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class WarpPlatesConfig {
-	public static final WarpPlatesConfig INSTANCE = new WarpPlatesConfig(FabricLoader.getInstance().getConfigDir().resolve("warp_plates.properties").toFile());
+	public static final WarpPlatesConfig INSTANCE = new WarpPlatesConfig(FabricLoader.getInstance().getConfigDir().resolve("rent_a_plate.properties").toFile());
 	private static final String RENT_ITEM = "rent_item";
 	private static final String RENT_PRICE = "rent_price";
 	private static final String RENT_DURATION = "rent_duration";
 	private static final String RENT_RENEWAL_TIME = "rent_renewal_time";
-	private static final long DEFAULT_RENT_DURATION = 1000 * 60 * 60 * 24 * 30L;
-	private static final long DEFAULT_RENT_RENEWAL_TIME = 1000 * 60 * 60 * 25 * 5L;
+	private static final long DEFAULT_RENT_DURATION = 60 * 60 * 24 * 30L;
+	private static final long DEFAULT_RENT_RENEWAL_TIME = 60 * 60 * 24 * 5L;
 	private final Properties properties;
 
 	public WarpPlatesConfig(File file) {

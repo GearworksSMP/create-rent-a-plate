@@ -85,8 +85,9 @@ public class WarpPlateRentScreen extends AbstractContainerScreen<WarpPlateRentMe
 			return Component.empty();
 		}
 
+		String expiresIn = DurationFormatUtils.formatDuration(WarpPlatesConfig.INSTANCE.getRentRenewalTime(), "d");
 		String dur = DurationFormatUtils.formatDuration(time, "d'd' H'h' m'm' s's'");
-		return Component.translatable("text.rentaplate.screen.expiry_time", dur);
+		return Component.translatable("text.rentaplate.screen.expiry_time", dur, expiresIn);
 	}
 
 
